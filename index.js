@@ -6,14 +6,13 @@ const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const commands = [
-    new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
     new SlashCommandBuilder().setName('meltybot').setDescription('Replies with test!')
         .addSubcommand(subcommand => subcommand
-            .setName('red')
-            .setDescription('red'))
+            .setName('character')
+            .setDescription('character'))
         .addSubcommand(subcommand => subcommand
-            .setName('blue')
-            .setDescription('blue')),
+            .setName('system')
+            .setDescription('system')),
 ]
     .map(command => command.toJSON());
 
