@@ -32,15 +32,16 @@ client.on('interactionCreate', async interaction => {
 
     const { commandName } = interaction;
 
-    if (commandName === 'ping') {
-        await interaction.reply('Pong!');
-    }
-    else if (commandName === 'meltybot') {
-        if (interaction.options.getSubcommand() === 'red') {
-            await interaction.reply(`Hi I'm the red MeltyBot!`);
+    if (commandName === 'meltybot') {
+        if (interaction?.options.getSubcommand() === 'character') {
+            let message = await interaction?.user.createDM();
+            await message.send(`You'll eventually get character data`);
+            await interaction?.reply({content: 'DM sent', ephemeral: true});
         }
-        else if (interaction.options.getSubcommand() === 'blue') {
-            await interaction.reply(`Hi I'm the blue MeltyBot!`);
+        else if (interaction?.options.getSubcommand() === 'system') {
+            let message = await interaction?.user.createDM();
+            await message.send(`You'll eventually get system data`);
+            await interaction?.reply({content: 'DM sent', ephemeral: true});
         }
     }
 });
