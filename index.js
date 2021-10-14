@@ -5,14 +5,33 @@ const { token, clientId } = require('./config.json');
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+const characters = [
+    {
+        name: 'Saber',
+        description: 'You know.'
+    },
+    {
+        name: 'Arcueid',
+        description: 'You know.'
+    }
+];
+
 const commands = [
     new SlashCommandBuilder().setName('meltybot').setDescription('Replies with test!')
-        .addSubcommand(subcommand => subcommand
+        .addSubcommandGroup(subcommandGroup => subcommandGroup
             .setName('character')
-            .setDescription('character'))
-        .addSubcommand(subcommand => subcommand
+            .setDescription('Character data')
+            .addSubcommand( subcommand => subcommand
+                .setName('all')
+                .setDescription('All character data')
+            )
+            .addSubcommand( subcommand => subcommand
+                .setName('test')
+                .setDescription('All test character data')
+            ))
+        .addSubcommand(subcommandGroup => subcommandGroup
             .setName('system')
-            .setDescription('system')),
+            .setDescription('System data')),
 ]
     .map(command => command.toJSON());
 
@@ -33,9 +52,17 @@ client.on('interactionCreate', async interaction => {
     const { commandName } = interaction;
 
     if (commandName === 'meltybot') {
-        if (interaction?.options.getSubcommand() === 'character') {
+        let group = interaction?.options?.data?.find(g => g?.name === 'character');
+        let subCommand = '';
+
+        console.log(interaction);
+        console.log(group);
+        console.log(subCommand?.name);
+
+        if (group && subCommand) {
             let message = await interaction?.user.createDM();
-            await message.send(`You'll eventually get character data`);
+            await message.send(`You'll eventually get ${subCommand?.name} character data`);
+            //await interaction?.deferReply();
             await interaction?.reply({content: 'DM sent', ephemeral: true});
         }
         else if (interaction?.options.getSubcommand() === 'system') {
