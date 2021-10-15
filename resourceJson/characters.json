@@ -1,1 +1,16 @@
-[]
+{
+  "characters": [
+    {
+      "id": "akiha",
+      "name": "Akiha Tohno"
+    },
+    {
+      "id": "saber",
+      "name": "Saber Tohno"
+    },
+    {
+      "id": "shiki",
+      "name": "Shiki Tohno"
+    }
+  ]
+}
