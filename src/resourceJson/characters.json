@@ -1,0 +1,28 @@
+{
+  "characters": [
+    {
+      "id": "akiha",
+      "name": "Akiha Tohno",
+      "description": "Akiha Tohno is the younger sister of Shiki and the head of the prestigious Tohno family and a student of the elite Asagami Private Girls Academy.",
+      "moves": [
+        {
+          "id": "test",
+          "name": "Test",
+          "input": "6A+B"
+        }
+      ]
+    },
+    {
+      "id": "saber",
+      "name": "Saber",
+      "description": "Artoria Pendragon , Class Name Saber , is one of the main characters of Fate/Zero and one of the three main heroines of Fate/stay night. She is the Saber-class Servant of Kiritsugu Emiya in the Fourth Holy Grail War and Shirou Emiya in the Fifth Holy Grail War.",
+      "moves": null
+    },
+    {
+      "id": "shiki",
+      "name": "Shiki Tohno",
+      "description": "Shiki Tohno is a member of the Tohno household living in Misaki Town. He possesses the Mystic Eyes of Death Perception, Mystic Eyes that allow him to see \"death.\" He is the main protagonist of Tsukihime and the Tsukihime series.",
+      "moves": null
+    }
+  ]
+}

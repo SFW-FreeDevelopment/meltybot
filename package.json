@@ -2,9 +2,10 @@
   "name": "meltybot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
+  "type": "commonjs",
   "scripts": {
-    "start": "node testClient.js"
+    "start": "ts-node ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@discordjs/rest": "^0.1.0-canary.0",
-    "discord-api-types": "^0.23.1"
+    "discord-api-types": "^0.23.1",
+    "ts-node": "^10.3.0"
   }
 }

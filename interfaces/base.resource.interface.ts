@@ -1,3 +1,0 @@
-interface BaseResourceInterface {
-    name: string;
-}

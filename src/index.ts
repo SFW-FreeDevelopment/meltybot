@@ -1,12 +1,16 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+//const { SlashCommandBuilder } = require('@discordjs/builders');
+import {Interaction} from "discord.js";
+
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { token, clientId } = require('./config.json');
+const { token, clientId } = require('../config.json');
 const { Client, Intents } = require('discord.js');
+const commandsJson = require('./commands/commands.tsx');
+const {handleCharacterCommand} = require('./commands/characterCommandHandler.tsx');
 const { characters } = require('./resourceJson/characters.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-const commands = [
+/*const commands = [
     new SlashCommandBuilder().setName('meltybot').setDescription('Supplies data for Melty Blood Type Lumina')
         .addSubcommandGroup(subcommandGroup => subcommandGroup
             .setName('character')
@@ -22,13 +26,12 @@ const commands = [
                 .setName('all')
                 .setDescription('All character data')
             )),
-]
-    .map(command => command.toJSON());
+]*/
+console.log(commandsJson);
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-
-rest.put(Routes.applicationCommands(clientId), { body: commands })
+rest.put(Routes.applicationCommands(clientId), { body: commandsJson.commands })
     .then(() => console.log('Successfully registered application commands.'))
     .catch(console.error);
 
@@ -36,7 +39,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async (interaction:Interaction) => {
     if (!interaction.isCommand()) return;
 
     const { commandName, options, user } = interaction;
@@ -54,12 +57,14 @@ client.on('interactionCreate', async interaction => {
 
         if (groupArray) {
             if (groupArray.some(g => g.name === 'character')) {
+
                 const group = groupArray.find(g => g.name === 'character');
                 console.log(group);
                 console.log(group?.options);
-                const message = await user.createDM();
+                //const message = await user.createDM();
                 const subCommandArray = group?.options
-                if (subCommandArray.some(sc => sc.name === 'all')) {
+                await handleCharacterCommand(subCommandArray, interaction);
+                /*if (subCommandArray.some(sc => sc.name === 'all')) {
                     console.log(characters);
                     let messageString = '';
                     for (const character of characters) {
@@ -68,13 +73,13 @@ client.on('interactionCreate', async interaction => {
                     }
                     await message.send(messageString);
                     await interaction?.reply({content: 'DM sent', ephemeral: true});
-                }
+                }*/
             }
             else if (groupArray.some(g => g.name === 'system')) {
                 const group = groupArray.find(g => g.name === 'system');
                 const message = await user.createDM();
                 const subCommandArray = group?.options
-                if (subCommandArray.some(sc => sc.name === 'all')) {
+                if (subCommandArray?.some(sc => sc.name === 'all')) {
                     await message.send(`Nothing to see here!`);
                     await interaction?.reply({content: 'DM sent', ephemeral: true});
                 }
