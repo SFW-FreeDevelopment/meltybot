@@ -2,10 +2,10 @@
   "name": "meltybot",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "index.ts",
   "type": "commonjs",
   "scripts": {
-    "start": "ts-node ./src/index.ts"
+    "start": "../node_modules/.bin/ts-node ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,10 @@
   "dependencies": {
     "@discordjs/builders": "^0.6.0",
     "discord.js": "^13.2.0",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.23.1",
+    "ts-node": "^10.3.0"
   },
   "devDependencies": {
     "@discordjs/rest": "^0.1.0-canary.0",

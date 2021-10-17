@@ -3,7 +3,7 @@ import {Interaction} from "discord.js";
 
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { token, clientId } = require('../config.json');
+const { token, clientId } = require('./config.json');
 const { Client, Intents } = require('discord.js');
 const commandsJson = require('./commands/commands.tsx');
 const {handleCharacterCommand} = require('./commands/characterCommandHandler.tsx');
