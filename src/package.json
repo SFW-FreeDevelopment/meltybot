@@ -17,10 +17,5 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.23.1",
     "ts-node": "^10.3.0"
-  },
-  "devDependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "discord-api-types": "^0.23.1",
-    "ts-node": "^10.3.0"
   }
 }
