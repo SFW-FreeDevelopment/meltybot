@@ -1,15 +1,15 @@
 FROM node:latest
 
 # Create the directory!
-RUN mkdir -p /src
-WORKDIR /src
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
 
 # Copy and Install our bot
-COPY src/package.json /src
+COPY src/package.json .
 RUN npm install
 
 # Our precious bot
-COPY . /src
+COPY ./src .
 
 # Start me!
-CMD ["ts-node", "./src/index.ts"]
+CMD ["npm", "start"]
